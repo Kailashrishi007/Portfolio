@@ -1,0 +1,60 @@
+/* Basic layout and component styles for portfolio */
+
+:root{--bg:var(--bg);--text:var(--text);--accent:var(--accent);--accent-bg:var(--accent-bg)}
+html,body,#root{height:100%}
+.site-root{min-height:100vh;display:flex;flex-direction:column}
+main{flex:1;display:flex;flex-direction:column;gap:96px;padding:40px 24px;width:100%;max-width:none}
+
+/* Navbar */
+.nav{position:sticky;top:0;z-index:40;background:linear-gradient(180deg,rgba(255,255,255,0.6),transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--border)}
+.nav-inner{width:100%;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+.nav-links{display:flex;gap:20px}
+.nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:8px}
+.nav a:hover{background:var(--accent-bg);color:var(--text-h)}
+
+/* hero */
+.hero{display:flex;flex-direction:column;align-items:flex-start;gap:18px;padding:32px 8px}
+.hero .title{display:flex;align-items:center;gap:16px}
+.hero h1{margin:0}
+.hero .lead{max-width:720px;color:var(--text)}
+.cta{margin-top:8px}
+
+/* About */
+.about{display:grid;grid-template-columns:1fr 320px;gap:28px;align-items:start}
+.profile{width:100%;max-width:280px;border-radius:12px;object-fit:cover}
+.skills{display:flex;flex-wrap:wrap;gap:8px}
+.skill{background:var(--code-bg);padding:6px 10px;border-radius:8px;font-size:14px}
+
+/* Projects grid */
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.project-card{padding:16px;border-radius:12px;border:1px solid var(--border);background:transparent;transition:transform .22s ease,box-shadow .22s}
+.project-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.tech{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+
+/* Timeline */
+.timeline{display:flex;flex-direction:column;gap:16px}
+.timeline-item{padding:12px;border-left:2px solid var(--border);margin-left:12px}
+.timeline-item h4{margin:0}
+
+/* Contact */
+.contact-form{max-width:720px;display:flex;flex-direction:column;gap:12px}
+.input,textarea{padding:10px;border-radius:8px;border:1px solid var(--border);font-size:16px}
+.btn{background:var(--accent);color:white;padding:10px 14px;border-radius:8px;border:none;cursor:pointer}
+
+/* Footer */
+.site-footer{padding:28px;text-align:center;border-top:1px solid var(--border);color:var(--text)}
+
+/* Responsive */
+@media (max-width:900px){
+  .projects-grid{grid-template-columns:repeat(2,1fr)}
+  .about{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .projects-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  main{gap:48px;padding:24px 16px}
+}
+
+/* Reveal animation */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
