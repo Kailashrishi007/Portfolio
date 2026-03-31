@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import TypingEffect from './TypingEffect'
 import profile from '../assets/heromain.png'
+import { skills } from '../data/data'
 import Button from './Button'
 import useReveal from '../hooks/useReveal'
 
@@ -25,6 +26,14 @@ export default function hero() {
             <TypingEffect texts={["Music Producer", "React Developer", "Spring Boot Developer"]} />
           </div>
           <p className="mt-4 text-gray-700 dark:text-gray-300 max-w-xl reveal-on-scroll reveal-fade">I design and build modern, accessible web products with performance and polish in mind.</p>
+          <div className="mt-4 reveal-on-scroll reveal-fade">
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">Core skills:</p>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {skills.slice(0,8).map((s) => (
+                <span key={s} className="inline-block bg-gray-100 dark:bg-neutral-800 border border-gray-100 dark:border-neutral-700 px-3 py-1 rounded-full text-sm text-gray-700 dark:text-gray-200 reveal-on-scroll reveal-scale">{s}</span>
+              ))}
+            </div>
+          </div>
 
           <div className="mt-6 flex flex-wrap gap-3 reveal-on-scroll reveal-scale">
             <Button ariaLabel="View projects" className="">View Projects</Button>

@@ -15,24 +15,24 @@ export const skills = [
 export const projects = [
   {
     id: 1,
-    title: 'Project One',
-    desc: 'A minimal React app demonstrating component design and responsive UI.',
-    tech: ['React', 'Vite', 'CSS'],
+    title: 'Online Resort Booking System',
+    desc: 'An Angular Springboot application for booking resorts.',
+    tech: ['Angular', 'Spring Boot', 'Bootstrap', 'MySQL', 'EmailJS'],
     github: '#',
     demo: '#'
   },
   {
     id: 2,
-    title: 'Project Two',
-    desc: 'An interactive dashboard with charts and filters.',
-    tech: ['React', 'D3', 'CSS'],
+    title: 'Face mask Detection System',
+    desc: 'Realtime Face mask detection and alarm System.',
+    tech: ['Python', 'OpenCV', 'TensorFlow', 'Keras'],
     github: '#',
     demo: '#'
   },
   {
     id: 3,
-    title: 'Project Three',
-    desc: 'A static marketing site with accessibility best practices.',
+    title: 'Pothole and Speedbump Detection System',
+    desc: 'Realtime Pothole and Speedbump detection system for vehicles using deep learning.',
     tech: ['HTML', 'CSS', 'Accessibility'],
     github: '#',
     demo: '#'
@@ -49,15 +49,15 @@ export const experience = [
   },
   {
     id: 2,
-    title: 'B.Sc. Computer Science',
-    org: 'St Josephs Institute of Technology',
+    title: 'BE Computer Science Engineering',
+    org: 'St Josephs Institute of Technology, Anna University',
     period: '2019 - 2023',
     desc: 'Studied software engineering fundamentals with projects.'
   },
   {
     id: 3,
     title: 'MBA Technology Management',
-    org: 'Anna University',
+    org: 'College of Engineering, Anna University',
     period: '2025 - 2027',
     desc: 'Studied software engineering fundamentals with projects.'
   }

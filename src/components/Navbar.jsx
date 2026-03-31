@@ -12,6 +12,8 @@ const links = [
   { id: 'contact', label: 'Contact' },
 ]
 
+const repoUrl = 'https://github.com/Kailashrishi007/Portfolio'
+
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -55,6 +57,15 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
+          <a
+            href={repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-3 py-2 rounded-md bg-gradient-to-r from-gray-700 to-gray-900 text-white text-sm font-medium hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-accent/40"
+            aria-label="View source code by Kailash Ganeshkumar on GitHub"
+          >
+            See How It’s Built
+          </a>
           <button
             aria-label="Toggle music"
             onClick={() => { playClick(); const playing = toggleMusic(); setMusicOn(playing) }}
@@ -64,7 +75,15 @@ export default function Navbar() {
           </button>
         </div>
 
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center gap-2">
+          <button
+            aria-label="Toggle music"
+            onClick={() => { playClick(); const playing = toggleMusic(); setMusicOn(playing) }}
+            className="p-2 rounded-full bg-gray-100 dark:bg-neutral-800 text-gray-700 dark:text-gray-200 hover:scale-105 transition-transform shadow-sm flex items-center justify-center"
+          >
+            <img src={musicalNote} alt="music" className={`h-4 w-4 ${musicOn ? 'opacity-100 animate-pulse' : 'opacity-85'}`} />
+          </button>
+
           <button
             aria-label="Toggle menu"
             onClick={() => setOpen((v) => !v)}
@@ -86,17 +105,29 @@ export default function Navbar() {
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden px-6 pb-6">
-          <div className="flex flex-col gap-2">
-            {links.map((l) => (
-              <a
-                key={l.id}
-                href={`#${l.id}`}
-                onClick={() => setOpen(false)}
-                className="block px-3 py-2 rounded-md text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-neutral-800 transition"
-              >
-                {l.label}
-              </a>
-            ))}
+          <div className="flex flex-col gap-3">
+            <a
+              href={repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="block w-full text-center px-3 py-2 rounded-md bg-gradient-to-r from-gray-700 to-gray-900 text-white text-sm font-medium"
+            >
+              View code
+            </a>
+
+            <div className="flex flex-col gap-2">
+              {links.map((l) => (
+                <a
+                  key={l.id}
+                  href={`#${l.id}`}
+                  onClick={() => setOpen(false)}
+                  className="block px-3 py-2 rounded-md text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-neutral-800 transition"
+                >
+                  {l.label}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       )}

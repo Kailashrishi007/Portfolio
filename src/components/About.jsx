@@ -13,12 +13,12 @@ export default function About() {
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-white reveal-on-scroll reveal-left">About</h2>
 
           <div className="mt-4 reveal-on-scroll reveal-fade">
-            <div className="bg-neutral-900/95 border border-neutral-800 rounded-lg overflow-hidden shadow-lg font-mono text-sm text-green-300 w-full">
+            <div className="bg-neutral-900/95 border border-neutral-800 rounded-lg overflow-hidden shadow-lg font-mono text-sm text-green-300 w-full text-left">
               <div className="flex items-center gap-3 px-3 py-2 bg-neutral-800/60">
                 <span className="w-3 h-3 bg-red-500 rounded-full" aria-hidden />
                 <span className="w-3 h-3 bg-yellow-400 rounded-full" aria-hidden />
                 <span className="w-3 h-3 bg-green-500 rounded-full" aria-hidden />
-                <span className="ml-auto text-xs text-neutral-400">rishi@Kailashs-MacBook-Air portfolio %</span>
+                <span className="ml-auto text-xs text-neutral-400">terminal@Kailashs-MacBook-Air portfolio %</span>
               </div>
               <TerminalBox skills={skills} />
             </div>
@@ -31,7 +31,7 @@ export default function About() {
 
 function TerminalBox({ skills }) {
   const [lines, setLines] = useState([
-    { t: 'cmd', text: 'rishi@Kailashs-MacBook-Air portfolio % npm run dev' },
+    { t: 'cmd', text: 'terminal@Kailashs-MacBook-Air portfolio % npm run dev' },
     { t: 'out', text: '> portfolio@0.0.0 dev\n> vite' },
     { t: 'out', text: 'Port 5173 is in use, trying another one...' },
     { t: 'out', text: '' },
@@ -44,13 +44,29 @@ function TerminalBox({ skills }) {
   const [histIndex, setHistIndex] = useState(-1)
   const inputRef = useRef(null)
 
-  useEffect(() => {
-    // focus cursor when component mounts
-    inputRef.current?.focus()
-  }, [])
+  // don't autofocus on mount (prevents the page from jumping to About)
 
   function pushLine(obj) {
     setLines((l) => [...l, obj])
+  }
+
+  function sleep(ms) {
+    return new Promise((res) => setTimeout(res, ms))
+  }
+
+  async function typeOut(text, type = 'out', wordDelay = 80) {
+    const words = String(text).split(' ')
+    setLines((l) => [...l, { t: type, text: '' }])
+    for (let i = 0; i < words.length; i++) {
+      await sleep(wordDelay)
+      setLines((prev) => {
+        const copy = [...prev]
+        const lastIdx = copy.length - 1
+        const last = copy[lastIdx] || { t: type, text: '' }
+        copy[lastIdx] = { ...last, text: (last.text ? last.text + ' ' : '') + words[i] }
+        return copy
+      })
+    }
   }
 
   function handleCommand(raw) {
@@ -66,7 +82,7 @@ function TerminalBox({ skills }) {
       return
     }
     if (norm === 'help' || norm === 'ls') {
-      pushLine({ t: 'out', text: 'Available: whoami, showskills, needresume, clear, help' })
+      typeOut('Available: whoareyou, showskills, needresume, clear, help', 'out')
       return
     }
 
@@ -74,18 +90,18 @@ function TerminalBox({ skills }) {
     const parts = norm.split(/\s+/)
     const key = parts.length > 1 && parts[0] === 'cd' ? parts[1] : parts[0]
 
-    if (key === 'whoami' || key === 'whoaimi') {
-      pushLine({ t: 'out', text: 'Kailash Ganeshkumar' })
+    if (key === 'whoareyou' || key === 'whoareu') {
+      typeOut('Kailash Ganeshkumar', 'out')
       return
     }
 
     if (key === 'showskills' || key === 'skills') {
-      pushLine({ t: 'out', text: skills.join(', ') })
+      typeOut(skills.join(', '), 'out', 50)
       return
     }
 
     if (key === 'needresume' || key === 'resume' || key === 'getresume') {
-      pushLine({ t: 'out', text: 'Generating resume and starting download...' })
+      typeOut('Generating resume and starting download...', 'out')
       triggerDownload()
       return
     }
@@ -105,7 +121,7 @@ function TerminalBox({ skills }) {
       a.click()
       a.remove()
       URL.revokeObjectURL(url)
-      pushLine({ t: 'out', text: 'Download started.' })
+      typeOut('Download started.', 'out')
     } catch (e) {
       pushLine({ t: 'err', text: 'Failed to start download.' })
     }
@@ -138,8 +154,8 @@ function TerminalBox({ skills }) {
   }
 
   return (
-    <div className="p-4">
-      <div className="min-h-40 max-h-96 overflow-auto pr-2" onClick={() => inputRef.current?.focus()}>
+          <div className="p-4 text-left">
+        <div className="min-h-40 max-h-96 overflow-auto pr-2 text-left" onClick={() => inputRef.current?.focus()}>
         {lines.map((ln, i) => (
           <div key={i} className={`whitespace-pre-wrap ${ln.t === 'cmd' ? 'text-white' : ln.t === 'err' ? 'text-red-400' : 'text-green-300'}`}>
             {ln.text}
@@ -156,9 +172,9 @@ function TerminalBox({ skills }) {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={onKeyDown}
-            placeholder="type a command (help)"
+            placeholder="type the command (help)"
             aria-label="Terminal input"
-            className="flex-1 bg-transparent outline-none text-green-200 placeholder:text-neutral-500"
+            className="flex-1 bg-transparent outline-none text-green-200 placeholder:text-neutral-500 text-left"
           />
           <button onClick={() => { handleCommand(input); setInput('') }} className="text-xs px-2 py-1 bg-neutral-800/40 rounded text-neutral-300">Run</button>
         </div>

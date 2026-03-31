@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import useReveal from '../hooks/useReveal'
+import resume from '../assets/Kailash Ganeshkumar Resume.pdf'
 
 export default function Contact(){
   const ref = useRef(null)
@@ -13,12 +14,21 @@ export default function Contact(){
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href="/cv.pdf"
+            href={resume}
             download
             className="reveal-on-scroll reveal-scale inline-flex items-center justify-center px-5 py-2.5 rounded-lg font-medium text-sm transition-transform focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent/60 shadow-sm bg-gradient-to-r from-purple-600 to-indigo-500 hover:scale-105 active:scale-95 text-white"
             aria-label="Download CV"
           >
             Download CV
+          </a>
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=kailashrishi777@gmail.com&su=Thanks%20for%20checking%20out%20my%20profile!%20Let's%20connect!"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="reveal-on-scroll reveal-scale inline-flex items-center justify-center px-5 py-2.5 rounded-lg font-medium text-sm transition-colors border border-gray-200 dark:border-neutral-700 hover:bg-gray-50 dark:hover:bg-neutral-800 text-gray-800 dark:text-gray-100"
+            aria-label="Compose email to Kailash via Gmail"
+          >
+            Email
           </a>
 
           <a

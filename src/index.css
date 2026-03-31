@@ -109,17 +109,36 @@
 
   /* Interactive card hover lift */
   .interactive-card {
+    position: relative;
     transition: transform 240ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease, border-color 220ms ease;
     will-change: transform, box-shadow;
   }
   .interactive-card:hover {
     transform: translateY(-6px) scale(1.01);
-    box-shadow: 0 20px 40px rgba(2,6,23,0.35);
-    border-color: rgba(192,132,252,0.18);
+    box-shadow: 0 22px 48px rgba(2,6,23,0.42), 0 0 30px color-mix(in srgb, var(--accent) 20%, transparent);
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent-bg) 8%, transparent);
   }
   .interactive-card:focus-within {
     transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 14px 30px rgba(2,6,23,0.28);
+    box-shadow: 0 16px 34px rgba(2,6,23,0.32), 0 0 20px color-mix(in srgb, var(--accent) 12%, transparent);
+    outline: 3px solid color-mix(in srgb, var(--accent) 14%, transparent);
+    outline-offset: 4px;
+  }
+
+  /* small accent border pulse on hover */
+  .interactive-card::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    transition: opacity 280ms ease, transform 280ms ease;
+    opacity: 0;
+  }
+  .interactive-card:hover::after {
+    opacity: 1;
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 6%, transparent);
   }
 
   /* subtle parallax for hero background */

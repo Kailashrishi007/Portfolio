@@ -1,6 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { experience, skills as allSkills } from '../data/data'
 import useReveal from '../hooks/useReveal'
+import ltiLogo from '../assets/LTI.png'
+import annaLogo from '../assets/anna.png'
+import sjitLogo from '../assets/sjit.webp'
+import googleLogo from '../assets/google.png'
+import nvidiaLogo from '../assets/nvidia.png'
+import hackerRankLogo from '../assets/hackerank.png'
 
 export default function Experience(){
   const ref = useRef(null)
@@ -8,13 +14,24 @@ export default function Experience(){
 
   return (
     <section id="experience" className="py-12" ref={ref}>
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6 text-left">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6 reveal-on-scroll reveal-left">Experience & Education</h2>
         <div className="space-y-6">
           {experience.map(item => (
             <div key={item.id} className="p-4 border border-gray-100 dark:border-neutral-700 rounded-lg bg-transparent dark:bg-neutral-900/10 reveal-on-scroll reveal-fade interactive-card">
-              <div className="flex items-baseline justify-between">
-                <h4 className="text-lg font-medium text-gray-900 dark:text-white">{item.title}</h4>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  {(() => {
+                    const map = {
+                      'LTI Mindtree': ltiLogo,
+                      'St Josephs Institute of Technology, Anna University': sjitLogo,
+                      'College of Engineering, Anna University': annaLogo,
+                    }
+                    const logo = map[item.org]
+                    return logo ? <img src={logo} alt={item.org} className="w-10 h-10 object-contain rounded-md" /> : null
+                  })()}
+                  <h4 className="text-lg font-medium text-gray-900 dark:text-white">{item.title}</h4>
+                </div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">{item.period}</div>
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">{item.org}</div>
@@ -31,33 +48,32 @@ export default function Experience(){
               <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">Interactive skill bars animate when scrolled into view.</p>
               <SkillGraph />
             </div>
-            <div className="hidden md:flex md:items-stretch">
+            <div className="md:items-stretch">
               <div className="p-4 rounded-lg border border-gray-100 dark:border-neutral-700 bg-transparent dark:bg-neutral-900/10 h-full flex flex-col justify-between w-full">
                 <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">Certifications</h4>
                 <div className="grid grid-cols-1 gap-3">
-                  <div className="p-3 bg-white/30 dark:bg-neutral-800/60 rounded-md border interactive-card">
-                    <div className="flex items-start gap-3">
-                      <div className="flex-1">
-                        <div className="text-sm font-medium text-gray-900 dark:text-white">Google Associate Cloud Engineer</div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400">Issued: 2024</div>
-                      </div>
+                  <div className="p-3 bg-white/30 dark:bg-neutral-800/60 rounded-md border interactive-card flex items-center gap-3">
+                    <img src={googleLogo} alt="Google" className="w-10 h-10 object-contain rounded-md" />
+                    <div className="flex-1">
+                      <div className="text-sm font-medium text-gray-900 dark:text-white">Google Associate Cloud Engineer</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">Issued: 2025</div>
                     </div>
                   </div>
 
-                  <div className="p-3 bg-white/30 dark:bg-neutral-800/60 rounded-md border interactive-card">
+                  <div className="p-3 bg-white/30 dark:bg-neutral-800/60 rounded-md border interactive-card flex items-center gap-3">
+                    <img src={nvidiaLogo} alt="NVIDIA" className="w-10 h-10 object-contain rounded-md" />
+                    <div className="flex-1">
+                      <div className="text-sm font-medium text-gray-900 dark:text-white">NVIDIA Networking</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">Issued: 2024</div>
+                    </div>
+                  </div>
+
+                  <div className="p-3 bg-white/30 dark:bg-neutral-800/60 rounded-md border interactive-card flex items-center gap-3">
+                    <img src={hackerRankLogo} alt="HackerRank" className="w-10 h-10 object-contain rounded-md mb-2" />
                     <div className="flex items-start gap-3">
                       <div className="flex-1">
-                        <div className="text-sm font-medium text-gray-900 dark:text-white">NVIDIA Networking Certificate</div>
+                        <div className="text-sm font-medium text-gray-900 dark:text-white">Hacker Rank - Java</div>
                         <div className="text-xs text-gray-500 dark:text-gray-400">Issued: 2023</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-3 bg-white/30 dark:bg-neutral-800/60 rounded-md border interactive-card">
-                    <div className="flex items-start gap-3">
-                      <div className="flex-1">
-                        <div className="text-sm font-medium text-gray-900 dark:text-white">AWS Cloud Practitioner (mock)</div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400">Issued: 2022</div>
                       </div>
                     </div>
                   </div>
@@ -97,7 +113,7 @@ function SkillGraph() {
     { name: 'React', pct: 92 },
     { name: 'JavaScript', pct: 88 },
     { name: 'Spring Boot', pct: 75 },
-    { name: 'Docker', pct: 72 },
+    { name: 'Java', pct: 72 },
     // { name: 'AWS', pct: 65 },
     { name: 'MySQL', pct: 68 },
   ]
