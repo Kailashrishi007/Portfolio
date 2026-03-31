@@ -118,6 +118,3 @@ Assets are in `src/assets/` (images, logos, audio, resume PDF).
 
 - MIT (add `LICENSE` file if you want to publish with this license)
 
----
-
-If you want, I can next add screenshots to `ProjectDetail` for each project or convert project detail views to dedicated routes using React Router.
