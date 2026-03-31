@@ -36,7 +36,22 @@ export default function hero() {
           </div>
 
           <div className="mt-6 flex flex-wrap gap-3 reveal-on-scroll reveal-scale">
-            <Button ariaLabel="View projects" className="">View Projects</Button>
+            <Button
+              ariaLabel="View projects"
+              onClick={() => {
+                try {
+                  const el = document.getElementById('projects')
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                    el.tabIndex = -1
+                    el.focus({ preventScroll: true })
+                  }
+                } catch (e) {}
+              }}
+              className=""
+            >
+              View Projects
+            </Button>
             <a
               href="#contact"
               className="inline-flex items-center px-4 py-2 rounded-lg border border-gray-200 dark:border-neutral-700 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-neutral-800 transition"

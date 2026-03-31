@@ -30,7 +30,7 @@ export default function About() {
 }
 
 function TerminalBox({ skills }) {
-  const [lines, setLines] = useState([
+  const initialLines = [
     { t: 'cmd', text: 'terminal@Kailashs-MacBook-Air portfolio % npm run dev' },
     { t: 'out', text: '> portfolio@0.0.0 dev\n> vite' },
     { t: 'out', text: 'Port 5173 is in use, trying another one...' },
@@ -38,7 +38,9 @@ function TerminalBox({ skills }) {
     { t: 'out', text: '  VITE v8.0.3  ready in 380 ms' },
     { t: 'out', text: "\n  ➜  Local:   http://localhost:5174/\n  ➜  Network: use --host to expose\n  ➜  press h + enter to show help" },
     { t: 'info', text: 'Interactive terminal. Type `help` for commands.' },
-  ])
+  ]
+
+  const [lines, setLines] = useState(initialLines)
   const [input, setInput] = useState('')
   const [history, setHistory] = useState([])
   const [histIndex, setHistIndex] = useState(-1)
@@ -78,7 +80,8 @@ function TerminalBox({ skills }) {
 
     const norm = cmd.toLowerCase()
     if (norm === 'clear') {
-      setLines([])
+      // reset to the original predefined lines only (preserve the initial header/info)
+      setLines(initialLines.slice())
       return
     }
     if (norm === 'help' || norm === 'ls') {

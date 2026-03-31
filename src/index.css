@@ -141,6 +141,41 @@
     box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 6%, transparent);
   }
 
+  /* Carousel sliding for project cards (desktop) */
+  @keyframes slide-carousel {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .carousel {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 1.25rem;
+    align-items: stretch;
+    animation: slide-carousel 20s linear infinite;
+    will-change: transform;
+  }
+
+  /* Pause the carousel when the user hovers or focuses any part of it */
+  .carousel:hover .carousel-track,
+  .carousel:focus-within .carousel-track {
+    animation-play-state: paused;
+  }
+
+  /* On small screens, disable the auto-slide and make track horizontally scrollable */
+  @media (max-width: 768px) {
+    .carousel-track {
+      animation: none;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+    }
+    .carousel-track::-webkit-scrollbar { display: none; }
+  }
+
   /* subtle parallax for hero background */
   .parallax-bg {
     background-attachment: fixed;

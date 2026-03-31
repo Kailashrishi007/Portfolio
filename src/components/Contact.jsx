@@ -10,7 +10,7 @@ export default function Contact(){
     <section id="contact" ref={ref} className="py-12">
       <div className="max-w-3xl mx-auto px-6 text-center">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 reveal-on-scroll reveal-left">Contact</h2>
-        <p className="text-gray-700 dark:text-gray-300 mb-6 reveal-on-scroll reveal-fade">You can download my CV or reach out on LinkedIn.</p>
+        <p className="text-gray-700 dark:text-gray-300 mb-6 reveal-on-scroll reveal-fade">Let’s connect — download my CV or reach out on LinkedIn. 🚀</p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
@@ -19,7 +19,7 @@ export default function Contact(){
             className="reveal-on-scroll reveal-scale inline-flex items-center justify-center px-5 py-2.5 rounded-lg font-medium text-sm transition-transform focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent/60 shadow-sm bg-gradient-to-r from-purple-600 to-indigo-500 hover:scale-105 active:scale-95 text-white"
             aria-label="Download CV"
           >
-            Download CV
+            Get My Resume
           </a>
           <a
             href="https://mail.google.com/mail/?view=cm&fs=1&to=kailashrishi777@gmail.com&su=Thanks%20for%20checking%20out%20my%20profile!%20Let's%20connect!"
