@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import TypingEffect from './TypingEffect'
-import profile from '../assets/heromain.png'
+import profile from '../assets/heroo.jpeg'
 import { skills } from '../data/data'
 import Button from './Button'
 import useReveal from '../hooks/useReveal'
@@ -8,6 +8,13 @@ import useReveal from '../hooks/useReveal'
 export default function hero() {
   const ref = useRef(null)
   useReveal(ref, { selector: '.reveal-on-scroll', threshold: 0.08, once: true })
+
+  function handleViewProjects() {
+    const el = document.getElementById('projects')
+    if (!el) return
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    el.focus({ preventScroll: true })
+  }
 
   return (
     <section
@@ -25,7 +32,7 @@ export default function hero() {
             <span className="inline-block w-2 h-2 rounded-full bg-indigo-500" aria-hidden />
             <TypingEffect texts={["Music Producer", "React Developer", "Spring Boot Developer"]} />
           </div>
-          <p className="mt-4 text-gray-700 dark:text-gray-300 max-w-xl reveal-on-scroll reveal-fade">I design and build modern, accessible web products with performance and polish in mind.</p>
+          <p className="mt-4 text-gray-700 dark:text-gray-300 max-w-xl reveal-on-scroll reveal-fade">I don’t just build apps , I build systems that scale</p>
           <div className="mt-4 reveal-on-scroll reveal-fade">
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">Core skills:</p>
             <div className="flex flex-wrap gap-2 mb-4">
@@ -36,22 +43,7 @@ export default function hero() {
           </div>
 
           <div className="mt-6 flex flex-wrap gap-3 reveal-on-scroll reveal-scale">
-            <Button
-              ariaLabel="View projects"
-              onClick={() => {
-                try {
-                  const el = document.getElementById('projects')
-                  if (el) {
-                    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                    el.tabIndex = -1
-                    el.focus({ preventScroll: true })
-                  }
-                } catch (e) {}
-              }}
-              className=""
-            >
-              View Projects
-            </Button>
+            <Button ariaLabel="View projects" onClick={handleViewProjects}>View Projects</Button>
             <a
               href="#contact"
               className="inline-flex items-center px-4 py-2 rounded-lg border border-gray-200 dark:border-neutral-700 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-neutral-800 transition"

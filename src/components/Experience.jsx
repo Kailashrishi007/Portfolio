@@ -22,12 +22,12 @@ export default function Experience(){
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   {(() => {
-                    const map = {
-                      'LTI Mindtree': ltiLogo,
-                      'St Josephs Institute of Technology, Anna University': sjitLogo,
-                      'College of Engineering, Anna University': annaLogo,
-                    }
-                    const logo = map[item.org]
+                    // robust matching for organization logos (handle small text variations)
+                    const org = String(item.org || '').toLowerCase()
+                    let logo = null
+                    if (org.includes('lti')) logo = ltiLogo
+                    else if (org.includes('joseph') || org.includes('sjit') || org.includes('st joseph')) logo = sjitLogo
+                    else if (org.includes('college') || org.includes('anna')) logo = annaLogo
                     return logo ? <img src={logo} alt={item.org} className="w-10 h-10 object-contain rounded-md" /> : null
                   })()}
                   <h4 className="text-lg font-medium text-gray-900 dark:text-white">{item.title}</h4>

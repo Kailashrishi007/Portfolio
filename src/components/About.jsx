@@ -45,6 +45,8 @@ function TerminalBox({ skills }) {
   const [history, setHistory] = useState([])
   const [histIndex, setHistIndex] = useState(-1)
   const inputRef = useRef(null)
+  const containerRef = useRef(null)
+  const userScrolledRef = useRef(false)
 
   // don't autofocus on mount (prevents the page from jumping to About)
 
@@ -70,6 +72,19 @@ function TerminalBox({ skills }) {
       })
     }
   }
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    // if user hasn't scrolled up manually, auto-scroll to bottom
+    if (!userScrolledRef.current) {
+      try {
+        el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' })
+      } catch (e) {
+        el.scrollTop = el.scrollHeight
+      }
+    }
+  }, [lines])
 
   function handleCommand(raw) {
     const cmd = raw.trim()
@@ -158,7 +173,17 @@ function TerminalBox({ skills }) {
 
   return (
           <div className="p-4 text-left">
-        <div className="min-h-40 max-h-96 overflow-auto pr-2 text-left" onClick={() => inputRef.current?.focus()}>
+        <div
+          ref={containerRef}
+          className="min-h-40 max-h-96 overflow-auto pr-2 text-left"
+          onClick={() => inputRef.current?.focus()}
+          onScroll={() => {
+            const el = containerRef.current
+            if (!el) return
+            const atBottom = el.scrollHeight - (el.scrollTop + el.clientHeight) < 20
+            userScrolledRef.current = !atBottom
+          }}
+        >
         {lines.map((ln, i) => (
           <div key={i} className={`whitespace-pre-wrap ${ln.t === 'cmd' ? 'text-white' : ln.t === 'err' ? 'text-red-400' : 'text-green-300'}`}>
             {ln.text}

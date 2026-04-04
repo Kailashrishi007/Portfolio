@@ -111,6 +111,8 @@
   .interactive-card {
     position: relative;
     transition: transform 240ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease, border-color 220ms ease;
+    border: 1px solid var(--border);
+    background: transparent;
     will-change: transform, box-shadow;
   }
   .interactive-card:hover {
@@ -121,24 +123,13 @@
   }
   .interactive-card:focus-within {
     transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 16px 34px rgba(2,6,23,0.32), 0 0 20px color-mix(in srgb, var(--accent) 12%, transparent);
-    outline: 3px solid color-mix(in srgb, var(--accent) 14%, transparent);
-    outline-offset: 4px;
+    box-shadow: 0 16px 34px rgba(2,6,23,0.32);
+    outline: none;
   }
 
   /* small accent border pulse on hover */
   .interactive-card::after {
-    content: '';
-    pointer-events: none;
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    transition: opacity 280ms ease, transform 280ms ease;
-    opacity: 0;
-  }
-  .interactive-card:hover::after {
-    opacity: 1;
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 6%, transparent);
+    content: none;
   }
 
   /* Carousel sliding for project cards (desktop) */
@@ -154,9 +145,9 @@
 
   .carousel-track {
     display: flex;
-    gap: 1.25rem;
+    gap: 1rem;
     align-items: stretch;
-    animation: slide-carousel 20s linear infinite;
+    animation: slide-carousel 12s linear infinite;
     will-change: transform;
   }
 
@@ -168,12 +159,51 @@
 
   /* On small screens, disable the auto-slide and make track horizontally scrollable */
   @media (max-width: 768px) {
+    /* Mobile: disable auto-slide, enable smooth swipe + scroll-snap so full cards show.
+       Cards will snap into view and users can swipe horizontally. */
+    .carousel {
+      padding-left: 0.75rem;
+    }
     .carousel-track {
       animation: none;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 1rem;
+      padding-right: 0.75rem;
     }
     .carousel-track::-webkit-scrollbar { display: none; }
+
+    /* Make each project card snap and occupy most of the viewport so it's not cut off */
+    .carousel-track > .project-card {
+      scroll-snap-align: start;
+      flex: 0 0 78%;
+      max-width: 78%;
+    }
+
+    /* Mobile: simplify card chrome to a single border and disable the outer accent pulse */
+    .carousel .interactive-card {
+      border: 1px solid var(--border) !important;
+      background: transparent !important;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+      border-radius: 1rem;
+      padding: 1rem;
+      transform: none !important;
+    }
+    .carousel .interactive-card::after {
+      display: none;
+    }
+    /* Make sure inner article doesn't add extra inset outlines on focus */
+    .carousel .interactive-card:focus-within {
+      outline: none;
+      box-shadow: 0 8px 22px rgba(2,6,23,0.08);
+    }
+
+    /* For the transform-based single-card carousel (min-w-full) ensure proper padding */
+    .carousel .project-card {
+      padding: 0;
+      max-width: 100%;
+    }
   }
 
   /* subtle parallax for hero background */

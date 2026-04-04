@@ -22,10 +22,23 @@ export default function Contact(){
             Get My Resume
           </a>
           <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=kailashrishi777@gmail.com&su=Thanks%20for%20checking%20out%20my%20profile!%20Let's%20connect!"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="reveal-on-scroll reveal-scale inline-flex items-center justify-center px-5 py-2.5 rounded-lg font-medium text-sm transition-colors border border-gray-200 dark:border-neutral-700 hover:bg-gray-50 dark:hover:bg-neutral-800 text-gray-800 dark:text-gray-100"
+            href="mailto:kailashrishi777@gmail.com?subject=Thanks%20for%20checking%20out%20my%20profile!"
+            onClick={(e) => {
+              // Try to open Gmail app first (deep link). Fallback to the mailto: link if app isn't available.
+              try {
+                const gmailUrl = `googlegmail://co?to=kailashrishi777@gmail.com&subject=${encodeURIComponent("Thanks for checking out my profile!")}`
+                // attempt to open Gmail app
+                window.location.href = gmailUrl
+                // fallback after short delay to mailto if app not installed
+                setTimeout(() => {
+                  window.location.href = 'mailto:kailashrishi777@gmail.com?subject=' + encodeURIComponent("Thanks for checking out my profile!")
+                }, 700)
+                e.preventDefault()
+              } catch (err) {
+                // noop, let the href mailto work
+              }
+            }}
+            className="reveal-on-scroll reveal-scale inline-flex items-center justify-center px-5 py-2.5 rounded-lg font-medium text-sm transition transform shadow-sm bg-emerald-500 hover:bg-emerald-600 text-white focus:outline-none focus:ring-2 focus:ring-emerald-300"
             aria-label="Compose email to Kailash via Gmail"
           >
             Email
@@ -35,7 +48,7 @@ export default function Contact(){
             href="https://www.linkedin.com/in/kailashganeshkumar"
             target="_blank"
             rel="noopener noreferrer"
-            className="reveal-on-scroll reveal-scale inline-flex items-center justify-center px-5 py-2.5 rounded-lg font-medium text-sm transition-colors border border-gray-200 dark:border-neutral-700 hover:bg-gray-50 dark:hover:bg-neutral-800 text-gray-800 dark:text-gray-100"
+            className="reveal-on-scroll reveal-scale inline-flex items-center justify-center px-5 py-2.5 rounded-lg font-medium text-sm transition transform shadow-sm bg-blue-600 hover:bg-blue-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-300"
             aria-label="Open LinkedIn profile"
           >
             LinkedIn

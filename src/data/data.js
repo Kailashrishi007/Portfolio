@@ -1,15 +1,16 @@
 export const skills = [
   'React',
-  'Springboot',
+  'Java',
+  'Spring Boot',
   'Docker',
   'JavaScript',
-  'Git',
   'MySql',
   'SonarQube',
-  'AWS Cloud',
-  'Git Pipelines CI/CD',
-  'Agile Methodologies',
-  'Figma'
+  'AWS',
+  'Git CI/CD',
+  'Agile',
+  'Figma',
+  'Britive',
 ]
 
 export const projects = [
@@ -18,14 +19,14 @@ export const projects = [
     title: 'Online Resort Booking System',
     desc: 'An Angular Springboot application for booking resorts.',
     tech: ['Angular', 'Spring Boot', 'Bootstrap', 'MySQL', 'EmailJS'],
-    github: '#',
+    github: 'https://github.com/Kailashrishi007/Resort_booking_system',
     demo: '#'
   },
   {
     id: 2,
     title: 'Face mask Detection System',
-    desc: 'Realtime Face mask detection and alarm System.',
-    tech: ['Python', 'OpenCV', 'TensorFlow', 'Keras'],
+    desc: 'Realtime Face mask detection and alarm System for monitoring.',
+    tech: ['Python', 'OpenCV', 'TensorFlow', 'Keras','Numpy'],
     github: '#',
     demo: '#'
   },
@@ -45,20 +46,20 @@ export const experience = [
     title: 'Full Stack Developer',
     org: 'LTI Mindtree',
     period: '2024 - Present',
-    desc: 'Contributed to UI components and improved performance.'
+    desc: 'Engineered and optimized scalable full-stack applications, improving UI load times by ~30% and enhancing overall user experience.'
   },
   {
     id: 2,
-    title: 'BE Computer Science Engineering',
-    org: 'St Josephs Institute of Technology, Anna University',
+    title: 'B.E. Computer Science Engineering',
+    org: 'St. Joseph’s Institute of Technology, Anna University',
     period: '2019 - 2023',
-    desc: 'Studied software engineering fundamentals with projects.'
+    desc: 'Built multiple full-stack projects applying data structures and system design principles. Graduated with a strong focus on real-world engineering practices.'
   },
   {
     id: 3,
     title: 'MBA Technology Management',
     org: 'College of Engineering, Anna University',
     period: '2025 - 2027',
-    desc: 'Studied software engineering fundamentals with projects.'
+    desc: 'Driving a blend of technology and business strategy, focusing on scalable product development, data-driven decision making, and leadership in tech-driven environments.'
   }
 ]
