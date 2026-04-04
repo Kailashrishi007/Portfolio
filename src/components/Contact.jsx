@@ -22,24 +22,16 @@ export default function Contact(){
             Get My Resume
           </a>
           <a
-            href="mailto:kailashrishi777@gmail.com?subject=Thanks%20for%20checking%20out%20my%20profile!"
+            href={"mailto:kailashrishi777@gmail.com?subject=" + encodeURIComponent("Thanks for checking out my profile!")}
             onClick={(e) => {
-              // Try to open Gmail app first (deep link). Fallback to the mailto: link if app isn't available.
-              try {
-                const gmailUrl = `googlegmail://co?to=kailashrishi777@gmail.com&subject=${encodeURIComponent("Thanks for checking out my profile!")}`
-                // attempt to open Gmail app
-                window.location.href = gmailUrl
-                // fallback after short delay to mailto if app not installed
-                setTimeout(() => {
-                  window.location.href = 'mailto:kailashrishi777@gmail.com?subject=' + encodeURIComponent("Thanks for checking out my profile!")
-                }, 700)
-                e.preventDefault()
-              } catch (err) {
-                // noop, let the href mailto work
-              }
+              // Use a simple mailto: so the device opens the user's default mail app (works reliably on mobile).
+              // Prevent default and set location to ensure mobile browsers trigger the mail composer.
+              e.preventDefault()
+              const mailto = `mailto:kailashrishi777@gmail.com?subject=${encodeURIComponent("Thanks for checking out my profile!")}`
+              window.location.href = mailto
             }}
             className="reveal-on-scroll reveal-scale inline-flex items-center justify-center px-5 py-2.5 rounded-lg font-medium text-sm transition transform shadow-sm bg-emerald-500 hover:bg-emerald-600 text-white focus:outline-none focus:ring-2 focus:ring-emerald-300"
-            aria-label="Compose email to Kailash via Gmail"
+            aria-label="Compose email to Kailash"
           >
             Email
           </a>
